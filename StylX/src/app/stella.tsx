@@ -13,22 +13,11 @@ export default function StellaScreen() {
       end={{ x: 1, y: 1 }}
     >
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.heading}>✨ Stella</Text>
-        <Text style={styles.subheading}>Your Style Assistant</Text>
 
         <View style={styles.featureCard}>
-          <Text style={styles.cardTitle}>💡 Coming Soon</Text>
           <Text style={styles.cardDescription}>
-            Stella is your personal style assistant. Get personalized fashion recommendations based on your quiz results!
+            Hi! I'm Stella, your AI STYL X Assistant.{'\n'}I can help you find looks based on your closet, saves, or general style questions.{'\n'}What can I help you with today?
           </Text>
-        </View>
-
-        <View style={styles.featureCard}>
-          <Text style={styles.cardTitle}>🎨 Features</Text>
-          <Text style={styles.featureItem}>• Personalized style recommendations</Text>
-          <Text style={styles.featureItem}>• Outfit matching suggestions</Text>
-          <Text style={styles.featureItem}>• Trend alerts</Text>
-          <Text style={styles.featureItem}>• Style tips & tricks</Text>
         </View>
       </ScrollView>
       <Navbar activeScreen="stella" />
