@@ -24,7 +24,7 @@
       "bundler": "metro",
       "output": "single",
       "favicon": "./assets/images/favicon.png",
-      "baseUrl": "/StylX/StylX"
+      "baseUrl": "/StylX"
     },
     "plugins": [
       "expo-router",
