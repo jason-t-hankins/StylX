@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, StyleSheet, View, Pressable, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { saveUserData, UserData } from "../utils/storage";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -71,7 +72,18 @@ export default function SignUpForm() {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => router.push("/style-quiz")}
+          onPress={async () => {
+            // Save user data before navigating
+            const userData: UserData = {
+              firstName,
+              lastName,
+              email,
+              password,
+              createdAt: new Date().toISOString(),
+            };
+            await saveUserData(userData);
+            router.push("/style-quiz");
+          }}
         >
           <Text style={styles.buttonText}>Next</Text>
         </Pressable>

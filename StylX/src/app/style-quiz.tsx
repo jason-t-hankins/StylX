@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyleSheet, View, Text, Pressable, Image, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { saveQuizResult, QuizResult } from "../utils/storage";
 
 const starImage = require("../../assets/figma/Type=Star.png");
 
@@ -78,7 +79,7 @@ export default function StyleQuiz() {
     }
   };
 
-  const handleNextQuiz = () => {
+  const handleNextQuiz = async () => {
     if (currentRound === 0) {
       // Intro to quiz round 1
       setCurrentRound(1);
@@ -91,11 +92,20 @@ export default function StyleQuiz() {
       // Last quiz round to finding style
       setCurrentRound(4);
     } else if (currentRound === 4) {
-      // Finding style to results - calculate winner
+      // Finding style to results - calculate winner and save result
       const winner = Object.entries(scores).reduce((a, b) =>
         b[1] > a[1] ? b : a
       )[0] as keyof typeof STYLE_RESULTS;
       setResultStyle(winner);
+
+      // Save quiz result to storage
+      const quizResult: QuizResult = {
+        style: winner,
+        completedAt: new Date().toISOString(),
+        scores,
+      };
+      await saveQuizResult(quizResult);
+
       setCurrentRound(5);
     } else if (currentRound === 5) {
       // Results to homescreen
